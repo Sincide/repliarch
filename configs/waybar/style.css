@@ -8,6 +8,7 @@
     font-weight: 500;
     font-size: 14px;
     min-height: 0;
+    box-sizing: border-box;
 }
 
 /* Main window styling */
@@ -18,6 +19,8 @@ window#waybar {
     transition-duration: 0.5s;
     border-radius: 12px;
     border: 2px solid rgba(180, 190, 254, 0.3);
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", monospace;
+    font-size: 14px;
 }
 
 window#waybar.hidden {
@@ -26,14 +29,16 @@ window#waybar.hidden {
 
 /* Tooltips */
 tooltip {
-    background: rgba(30, 30, 46, 0.95);
+    background-color: rgba(30, 30, 46, 0.95);
     border: 2px solid rgba(180, 190, 254, 0.3);
     border-radius: 8px;
     color: #cdd6f4;
+    padding: 8px;
 }
 
 tooltip label {
     color: #cdd6f4;
+    padding: 4px;
 }
 
 /* Button styling */
@@ -68,6 +73,8 @@ button:hover {
     color: #6c7086;
     border-radius: 6px;
     transition: all 0.3s ease;
+    border: none;
+    box-shadow: none;
 }
 
 #workspaces button:hover {
@@ -313,8 +320,13 @@ button:hover {
     transform: translateY(-1px);
 }
 
-#custom-media.custom-spotify {
+#custom-media.playing {
     background-color: rgba(166, 227, 161, 0.9);
+    color: #1e1e2e;
+}
+
+#custom-media.paused {
+    background-color: rgba(249, 226, 175, 0.9);
     color: #1e1e2e;
 }
 
@@ -351,20 +363,48 @@ button:hover {
 }
 
 /* Smooth transitions for all modules */
-#workspaces, #window, #clock, #battery, #cpu, #memory, #temperature,
-#backlight, #network, #pulseaudio, #custom-media, #custom-power,
-#custom-notification, #tray {
+#workspaces,
+#window,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#custom-power,
+#custom-notification,
+#tray {
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Responsive design adjustments */
 @media (max-width: 1366px) {
-    * {
+    window#waybar {
         font-size: 12px;
     }
     
     #window {
         max-width: 200px;
+    }
+    
+    #workspaces button {
+        padding: 3px 6px;
+        margin: 1px;
+    }
+    
+    #clock,
+    #battery,
+    #cpu,
+    #memory,
+    #temperature,
+    #backlight,
+    #network,
+    #pulseaudio {
+        padding: 6px 10px;
+        margin: 3px;
     }
 }
 
