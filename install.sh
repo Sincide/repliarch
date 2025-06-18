@@ -299,6 +299,10 @@ deploy_configurations() {
     mkdir -p "$HOME/.config/mako"
     mkdir -p "$HOME/.config/wofi"
     mkdir -p "$HOME/.config/kitty"
+    mkdir -p "$HOME/.config/hypridle"
+    mkdir -p "$HOME/.config/hyprlock"
+    mkdir -p "$HOME/.config/hyprpaper"
+    mkdir -p "$HOME/.config/wallpapers"
     mkdir -p "$HOME/Pictures/Wallpapers"
     mkdir -p "$HOME/Pictures/Screenshots"
     
@@ -310,7 +314,14 @@ deploy_configurations() {
     cp -r "$SCRIPT_DIR/configs/mako/"* "$HOME/.config/mako/"
     cp -r "$SCRIPT_DIR/configs/wofi/"* "$HOME/.config/wofi/"
     cp -r "$SCRIPT_DIR/configs/kitty/"* "$HOME/.config/kitty/"
-    cp "$SCRIPT_DIR/themes/default-wallpaper.svg" "$HOME/Pictures/Wallpapers/"
+    cp -r "$SCRIPT_DIR/configs/hypridle/"* "$HOME/.config/hypridle/"
+    cp -r "$SCRIPT_DIR/configs/hyprlock/"* "$HOME/.config/hyprlock/"
+    cp -r "$SCRIPT_DIR/configs/hyprpaper/"* "$HOME/.config/hyprpaper/"
+    cp -r "$SCRIPT_DIR/configs/wallpapers/"* "$HOME/.config/wallpapers/"
+    
+    # Setup wallpapers
+    chmod +x "$SCRIPT_DIR/scripts/setup-wallpapers.sh"
+    "$SCRIPT_DIR/scripts/setup-wallpapers.sh"
     
     # Make scripts executable
     chmod +x "$SCRIPT_DIR/scripts/"*.sh
