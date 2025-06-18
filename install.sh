@@ -168,6 +168,7 @@ install_hyprland() {
         "hyprpaper"
         "hypridle"
         "hyprlock"
+        "hyprpicker"
         "xdg-desktop-portal-hyprland"
         "xdg-desktop-portal-gtk"
         "polkit-kde-agent"
@@ -195,6 +196,7 @@ install_hyprland() {
         "pipewire"
         "pipewire-pulse"
         "pipewire-alsa"
+        "wlogout"
     )
     
     for i in "${!packages[@]}"; do
