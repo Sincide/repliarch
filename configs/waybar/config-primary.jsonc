@@ -59,10 +59,10 @@
     },
     
     "clock": {
-        "timezone": "America/New_York",
+        "interval": 60,
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%H:%M  %d/%m/%Y}",
-        "format-alt": "{:%A, %B %d, %Y}",
         "calendar": {
             "mode": "year",
             "mode-mon-col": 3,
@@ -76,6 +76,13 @@
                 "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
                 "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
             }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
         }
     },
     

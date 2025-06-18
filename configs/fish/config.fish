@@ -217,7 +217,12 @@ end
 
 # Initialize fzf key bindings if available
 if command -q fzf
-    fzf --fish | source
+    if test -f /usr/share/fzf/key-bindings.fish
+        source /usr/share/fzf/key-bindings.fish
+    end
+    if test -f /usr/share/fzf/completion.fish
+        source /usr/share/fzf/completion.fish
+    end
 end
 
 # Fish syntax highlighting

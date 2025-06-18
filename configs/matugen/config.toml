@@ -21,38 +21,46 @@ contrast = 0.0
 # custom_colors = { accent = "#89b4fa", surface = "#1e1e2e" }
 
 # Template directories and files
-[templates]
-# Hyprland colors
-hypr = { input_path = "~/.config/matugen/templates/hyprland.conf", output_path = "~/.config/hypr/colors.conf" }
+[[template]]
+input_path = "~/.config/matugen/templates/hyprland.conf"
+output_path = "~/.config/hypr/colors.conf"
 
-# Waybar theme
-waybar = { input_path = "~/.config/matugen/templates/waybar.css", output_path = "~/.config/waybar/colors.css" }
+[[template]]
+input_path = "~/.config/matugen/templates/waybar.css"
+output_path = "~/.config/waybar/colors.css"
 
-# Fish shell colors
-fish = { input_path = "~/.config/matugen/templates/fish_colors.fish", output_path = "~/.config/fish/colors.fish" }
+[[template]]
+input_path = "~/.config/matugen/templates/fish_colors.fish"
+output_path = "~/.config/fish/colors.fish"
 
-# Kitty terminal colors
-kitty = { input_path = "~/.config/matugen/templates/kitty.conf", output_path = "~/.config/kitty/colors.conf" }
+[[template]]
+input_path = "~/.config/matugen/templates/kitty.conf"
+output_path = "~/.config/kitty/colors.conf"
 
-# Mako notification colors
-mako = { input_path = "~/.config/matugen/templates/mako.conf", output_path = "~/.config/mako/colors.conf" }
+[[template]]
+input_path = "~/.config/matugen/templates/mako.conf"
+output_path = "~/.config/mako/colors.conf"
 
-# Wofi launcher colors
-wofi = { input_path = "~/.config/matugen/templates/wofi.css", output_path = "~/.config/wofi/colors.css" }
+[[template]]
+input_path = "~/.config/matugen/templates/wofi.css"
+output_path = "~/.config/wofi/colors.css"
 
 # Applications to reload after theme generation
-[apps]
-# Waybar instances
-waybar = "pkill waybar; waybar -c ~/.config/waybar/config-primary.jsonc -s ~/.config/waybar/style.css & waybar -c ~/.config/waybar/config-secondary.jsonc -s ~/.config/waybar/style.css &"
+[[hook]]
+on = "post"
+command = "pkill waybar; waybar -c ~/.config/waybar/config-primary.jsonc -s ~/.config/waybar/style.css & waybar -c ~/.config/waybar/config-secondary.jsonc -s ~/.config/waybar/style.css &"
 
-# Mako notifications
-mako = "pkill mako; mako &"
+[[hook]]
+on = "post"
+command = "pkill mako; mako &"
 
-# Hyprland (reload configuration)
-hyprland = "hyprctl reload"
+[[hook]]
+on = "post"
+command = "hyprctl reload"
 
-# Fish shell (source configuration)
-fish = "fish -c 'source ~/.config/fish/config.fish'"
+[[hook]]
+on = "post"
+command = "fish -c 'source ~/.config/fish/config.fish'"
 
 # Wallpaper settings
 [wallpaper]
