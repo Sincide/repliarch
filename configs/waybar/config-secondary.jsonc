@@ -122,17 +122,14 @@
             "notification": "󰂚",
             "none": "󰂜",
             "dnd-notification": "󰂛",
-            "dnd-none": "󰂜",
-            "inhibited-notification": "󰂚",
-            "inhibited-none": "󰂜",
-            "dnd-inhibited-notification": "󰂛",
-            "dnd-inhibited-none": "󰂜"
+            "dnd-none": "󰂜"
         },
         "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
+        "exec-if": "which makoctl",
+        "exec": "echo '{\"text\": \"\", \"tooltip\": \"Notifications\", \"class\": \"notification\", \"alt\": \"none\"}'",
+        "on-click": "makoctl dismiss --all",
+        "on-click-right": "makoctl restore",
+        "escape": true,
+        "interval": 30
     }
 }

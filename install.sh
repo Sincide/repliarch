@@ -169,6 +169,7 @@ install_hyprland() {
         "hypridle"
         "hyprlock"
         "xdg-desktop-portal-hyprland"
+        "xdg-desktop-portal-gtk"
         "polkit-kde-agent"
         "qt5-wayland"
         "qt6-wayland"
@@ -186,6 +187,14 @@ install_hyprland() {
         "brightnessctl"
         "playerctl"
         "network-manager-applet"
+        "kitty"
+        "noto-fonts"
+        "noto-fonts-emoji"
+        "ttf-jetbrains-mono-nerd"
+        "wireplumber"
+        "pipewire"
+        "pipewire-pulse"
+        "pipewire-alsa"
     )
     
     for i in "${!packages[@]}"; do
@@ -266,23 +275,46 @@ deploy_configurations() {
     
     # Create necessary directories
     mkdir -p "$HOME/.config/hypr"
-    mkdir -p "$HOME/.config/waybar"
+    mkdir -p "$HOME/.config/waybar/scripts"
     mkdir -p "$HOME/.config/fish/functions"
-    mkdir -p "$HOME/.config/matugen"
+    mkdir -p "$HOME/.config/matugen/templates"
+    mkdir -p "$HOME/.config/mako"
+    mkdir -p "$HOME/.config/wofi"
+    mkdir -p "$HOME/.config/kitty"
     mkdir -p "$HOME/Pictures/Wallpapers"
+    mkdir -p "$HOME/Pictures/Screenshots"
     
     # Copy configuration files
-    cp "$SCRIPT_DIR/configs/hypr/"* "$HOME/.config/hypr/"
-    cp "$SCRIPT_DIR/configs/waybar/"* "$HOME/.config/waybar/"
-    cp "$SCRIPT_DIR/configs/fish/"* "$HOME/.config/fish/"
-    cp "$SCRIPT_DIR/configs/fish/functions/"* "$HOME/.config/fish/functions/"
-    cp "$SCRIPT_DIR/configs/matugen/"* "$HOME/.config/matugen/"
+    cp -r "$SCRIPT_DIR/configs/hypr/"* "$HOME/.config/hypr/"
+    cp -r "$SCRIPT_DIR/configs/waybar/"* "$HOME/.config/waybar/"
+    cp -r "$SCRIPT_DIR/configs/fish/"* "$HOME/.config/fish/"
+    cp -r "$SCRIPT_DIR/configs/matugen/"* "$HOME/.config/matugen/"
+    cp -r "$SCRIPT_DIR/configs/mako/"* "$HOME/.config/mako/"
+    cp -r "$SCRIPT_DIR/configs/wofi/"* "$HOME/.config/wofi/"
+    cp -r "$SCRIPT_DIR/configs/kitty/"* "$HOME/.config/kitty/"
     cp "$SCRIPT_DIR/themes/default-wallpaper.svg" "$HOME/Pictures/Wallpapers/"
     
     # Make scripts executable
     chmod +x "$SCRIPT_DIR/scripts/"*.sh
+    chmod +x "$HOME/.config/waybar/scripts/"*.py
+    
+    # Set proper permissions for configuration files
+    chmod 644 "$HOME/.config/hypr/"*.conf
+    chmod 644 "$HOME/.config/waybar/"*.jsonc
+    chmod 644 "$HOME/.config/waybar/"*.css
+    chmod 644 "$HOME/.config/fish/"*.fish
+    chmod 644 "$HOME/.config/mako/"*
+    chmod 644 "$HOME/.config/wofi/"*
+    chmod 644 "$HOME/.config/kitty/"*.conf
     
     print_success "Configuration files deployed"
+}
+
+# Setup services
+setup_services() {
+    print_info "Setting up system services..."
+    "$SCRIPT_DIR/scripts/setup-services.sh"
+    print_success "System services configured"
 }
 
 # Setup dotfiles symlinks
@@ -408,6 +440,7 @@ main() {
         "install_matugen"
         "install_utilities"
         "deploy_configurations"
+        "setup_services"
         "setup_dotfiles"
         "apply_theme"
     )
