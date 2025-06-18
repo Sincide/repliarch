@@ -238,8 +238,24 @@ install_fish() {
 # Install Matugen for dynamic theming
 install_matugen() {
     print_info "Installing Matugen for dynamic theming..."
-    yay -S --needed --noconfirm matugen-bin
-    print_success "Matugen installed"
+    
+    # Install dependencies first
+    sudo pacman -S --needed --noconfirm rust cargo
+    
+    # Install matugen from AUR
+    if ! command -v matugen &> /dev/null; then
+        yay -S --needed --noconfirm matugen-bin
+        print_success "Matugen installed from AUR"
+    else
+        print_info "Matugen already installed"
+    fi
+    
+    # Create matugen directories
+    mkdir -p "$HOME/.config/matugen/templates"
+    mkdir -p "$HOME/.config/matugen/backups"
+    mkdir -p "$HOME/.local/share/matugen"
+    
+    print_success "Matugen and directories configured"
 }
 
 # Install additional utilities
