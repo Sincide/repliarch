@@ -1,0 +1,39 @@
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Hyprland Install Script"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "test_install_script"
+
+[[workflows.workflow]]
+name = "Hyprland Install Script"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod +x install.sh && ./install.sh --help"
+
+[[workflows.workflow]]
+name = "test_install_script"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./install.sh --help"
+
+[deployment]
+run = ["sh", "-c", "chmod +x install.sh && ./install.sh --help"]
